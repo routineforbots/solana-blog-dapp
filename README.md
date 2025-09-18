@@ -47,6 +47,7 @@ I chose to create a **Decentralized Blog dApp** that includes:
 ## 📖 Learning Outcomes
 
 This project was my first Solana dApp and provided hands-on experience with:
+
 - Program Derived Addresses (PDAs)
 - Account ownership and authorization
 - Transaction handling and error management
@@ -55,4 +56,4 @@ This project was my first Solana dApp and provided hands-on experience with:
 
 ---
 
-*This project was completed as part of the Ackee Solana School curriculum to demonstrate practical understanding of Solana development concepts.*
+_This project was completed as part of the Ackee Solana School curriculum to demonstrate practical understanding of Solana development concepts._
