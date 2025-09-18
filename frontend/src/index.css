@@ -1,0 +1,53 @@
+/* Global styles */
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+	color-scheme: dark;
+	color: #ffffff;
+	background: radial-gradient(ellipse at 60% 40%, #1b2aff 0%, #0c1240 45%, #070b28 70%, #030512 100%);
+	background-attachment: fixed;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+}
+
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+/* Inputs/Textareas/Buttons for dark background */
+input, textarea, select {
+	background: rgba(255, 255, 255, 0.06);
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	border-radius: 6px;
+	padding: 8px 10px;
+}
+
+input::placeholder, textarea::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+button {
+	background: rgba(255, 255, 255, 0.12);
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 8px;
+	padding: 8px 12px;
+	cursor: pointer;
+}
+
+button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+h2, h3 {
+	color: #ffffff;
+}

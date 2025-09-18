@@ -1,0 +1,267 @@
+{
+  "address": "9uTQy7AX7qd9xHDzcbK1mkraGPAMT7G3o1h2Ei8i4rAZ",
+  "metadata": {
+    "name": "blog",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "create_post",
+      "discriminator": [123, 92, 184, 29, 231, 24, 15, 202],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": ["user_profile"]
+        },
+        {
+          "name": "user_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117, 115, 101, 114, 95, 112, 114, 111, 102, 105, 108, 101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user_profile.authority",
+                "account": "UserProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "post",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              { "kind": "const", "value": [112, 111, 115, 116] },
+              { "kind": "account", "path": "user_profile" },
+              {
+                "kind": "account",
+                "path": "user_profile.post_count",
+                "account": "UserProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        { "name": "title", "type": "string" },
+        { "name": "content", "type": "string" }
+      ]
+    },
+    {
+      "name": "delete_post",
+      "discriminator": [208, 39, 67, 161, 55, 13, 153, 42],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": ["user_profile", "post"]
+        },
+        {
+          "name": "user_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117, 115, 101, 114, 95, 112, 114, 111, 102, 105, 108, 101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user_profile.authority",
+                "account": "UserProfile"
+              }
+            ]
+          },
+          "relations": ["post"]
+        },
+        {
+          "name": "post",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              { "kind": "const", "value": [112, 111, 115, 116] },
+              { "kind": "account", "path": "user_profile" },
+              { "kind": "account", "path": "post.post_id", "account": "Post" }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_user",
+      "discriminator": [111, 17, 185, 250, 60, 122, 38, 254],
+      "accounts": [
+        { "name": "authority", "writable": true, "signer": true },
+        {
+          "name": "user_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117, 115, 101, 114, 95, 112, 114, 111, 102, 105, 108, 101
+                ]
+              },
+              { "kind": "account", "path": "authority" }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_handle",
+      "discriminator": [206, 110, 19, 48, 91, 71, 188, 197],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": ["user_profile"]
+        },
+        {
+          "name": "user_profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117, 115, 101, 114, 95, 112, 114, 111, 102, 105, 108, 101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user_profile.authority",
+                "account": "UserProfile"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [{ "name": "new_handle", "type": "string" }]
+    },
+    {
+      "name": "update_post",
+      "discriminator": [151, 128, 207, 107, 169, 246, 241, 107],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": ["user_profile", "post"]
+        },
+        {
+          "name": "user_profile",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117, 115, 101, 114, 95, 112, 114, 111, 102, 105, 108, 101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "user_profile.authority",
+                "account": "UserProfile"
+              }
+            ]
+          },
+          "relations": ["post"]
+        },
+        {
+          "name": "post",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              { "kind": "const", "value": [112, 111, 115, 116] },
+              { "kind": "account", "path": "user_profile" },
+              { "kind": "account", "path": "post.post_id", "account": "Post" }
+            ]
+          }
+        }
+      ],
+      "args": [
+        { "name": "new_title", "type": "string" },
+        { "name": "new_content", "type": "string" }
+      ]
+    }
+  ],
+  "accounts": [
+    { "name": "Post", "discriminator": [8, 147, 90, 186, 185, 56, 192, 150] },
+    {
+      "name": "UserProfile",
+      "discriminator": [32, 37, 119, 205, 179, 180, 13, 194]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "HandleTooLong",
+      "msg": "Handle exceeds maximum length"
+    },
+    {
+      "code": 6001,
+      "name": "TitleTooLong",
+      "msg": "Title exceeds maximum length"
+    },
+    {
+      "code": 6002,
+      "name": "ContentTooLong",
+      "msg": "Content exceeds maximum length"
+    },
+    { "code": 6003, "name": "Unauthorized", "msg": "Operation not authorized" },
+    { "code": 6004, "name": "Overflow", "msg": "Arithmetic overflow occurred" }
+  ],
+  "types": [
+    {
+      "name": "Post",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "pubkey" },
+          { "name": "user_profile", "type": "pubkey" },
+          { "name": "post_id", "type": "u64" },
+          { "name": "title", "type": "string" },
+          { "name": "content", "type": "string" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    },
+    {
+      "name": "UserProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "authority", "type": "pubkey" },
+          { "name": "handle", "type": "string" },
+          { "name": "post_count", "type": "u64" },
+          { "name": "bump", "type": "u8" }
+        ]
+      }
+    }
+  ]
+}
